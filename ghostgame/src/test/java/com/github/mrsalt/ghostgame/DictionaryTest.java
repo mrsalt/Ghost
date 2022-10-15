@@ -8,9 +8,20 @@ import java.util.List;
 
 public class DictionaryTest {
 
-    List<String> words = List.of("alpha", "beta", "chlorine", "doggy", "elephant", "fox", "giraffe", "hippo", "iguana", "juniper", "koala", "llama", "monkey", "narwhal", "orangutang", "parrot", "quest", "racoon", "snake", "turtle");
+    List<String> words = List.of("alpha", "beta", "chlorine", "doggy", "elephant", "fire", "fork", "fort", "foul", "found", "fox", "giraffe", "hippo", "iguana", "juniper", "koala", "llama", "monkey", "narwhal", "orangutang", "parrot", "quest", "racoon", "snake", "turtle");
 
     Dictionary dictionary = new Dictionary(words);
+
+    @Test(expected = RuntimeException.class)
+    public void checkWordsAreInOrderThrowsException() {
+        Dictionary d = new Dictionary(List.of("Zebra", "Monkey", "Seahorse"));
+        d.checkThatWordsAreInOrder();
+    }
+
+    @Test
+    public void checkWordsAreInOrder() {
+        dictionary.checkThatWordsAreInOrder();
+    }
 
     @Test
     public void isFound() {
@@ -38,5 +49,12 @@ public class DictionaryTest {
         // Test words not in the dictionary
         for (String word : List.of("milk", "cow"))
             assertFalse(word + " was found", dictionary2.startsWithWord(word));
+    }
+
+    @Test
+    public void testWordsBeginningWith() {
+        assertEquals(List.of(), dictionary.wordsBeginningWith("fe"));
+        assertEquals(List.of("fork", "fort", "foul", "found", "fox"), dictionary.wordsBeginningWith("fo"));
+        assertEquals(List.of("fork", "fort"), dictionary.wordsBeginningWith("for"));
     }
 }

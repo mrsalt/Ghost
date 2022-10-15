@@ -70,7 +70,7 @@ public class Game {
                 TurnResponse action = player.takeTurn(currentWord, playersAlive);
                 if (action instanceof ChallengeResponse) {
                     GamePlayer whoLoses;
-                    int count = dictionary.wordsBeginningWith(currentWord);
+                    int count = dictionary.countWordsBeginningWith(currentWord);
                     if (count > 0) {
                         ioUtil.write("Sorry, " + player.getName() + ", there " + (count == 1 ? "is" : "are") + " " + count + " word" + (count == 1 ? "": "s") + " beginning with " + currentWord + " found in the dictionary.");
                         whoLoses = player;

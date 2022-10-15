@@ -1,24 +1,33 @@
 package com.github.mrsalt.ghostgame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
-    List<String> words;
+    final List<String> words;
 
     public Dictionary(List<String> words) {
+        this.words = words;
+    }
+
+    public List<String> getWords() {
+        return this.words;
+    }
+
+    public void checkThatWordsAreInOrder() {
         String previousWord = null;
         for (String word : words) {
-            if (previousWord != null && previousWord.compareTo(word) != -1)
+            if (previousWord != null && previousWord.compareTo(word) >= 0)
                 throw new RuntimeException("Error: " + previousWord + " does not come before " + word);
+            previousWord = word;
         }
-        this.words = words;
     }
 
     public boolean startsWithWord(String word) {
         return isContained(word, false);
     }
 
-    public int wordsBeginningWith(String word) {
+    public int countWordsBeginningWith(String word) {
         int pos = firstIndexOf(word);
         if (pos == -1) return 0;
         for (int i = pos; i < words.size(); i++) {
@@ -27,6 +36,19 @@ public class Dictionary {
             }
         }
         return words.size() - pos;
+    }
+
+    public List<String> wordsBeginningWith(String word) {
+        List<String> list = new ArrayList<>();
+        int pos = firstIndexOf(word);
+        if (pos == -1) return list;
+        for (int i = pos; i < words.size(); i++) {
+            if (makeComparison(word, false, words.get(i)) != 0) {
+                break;
+            }
+            list.add(words.get(i));
+        }
+        return list;
     }
 
     public boolean isExactWordFound(String word) {
