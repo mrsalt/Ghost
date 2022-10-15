@@ -1,5 +1,6 @@
 package com.github.mrsalt.ghostgame;
 
+import com.github.mrsalt.ghostgame.dictionary.Dictionary;
 import com.github.mrsalt.ghostgame.model.ChallengeResponse;
 import com.github.mrsalt.ghostgame.model.NewLetter;
 import com.github.mrsalt.ghostgame.model.TurnResponse;

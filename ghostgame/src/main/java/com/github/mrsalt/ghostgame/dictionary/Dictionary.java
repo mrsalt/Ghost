@@ -1,4 +1,4 @@
-package com.github.mrsalt.ghostgame;
+package com.github.mrsalt.ghostgame.dictionary;
 
 import java.util.ArrayList;
 import java.util.List;

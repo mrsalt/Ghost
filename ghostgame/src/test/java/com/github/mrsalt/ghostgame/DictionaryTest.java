@@ -1,6 +1,9 @@
 package com.github.mrsalt.ghostgame;
 
 import static org.junit.Assert.*;
+
+import com.github.mrsalt.ghostgame.dictionary.Dictionary;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
